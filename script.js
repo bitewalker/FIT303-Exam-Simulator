@@ -4,6 +4,7 @@ const difficultySelect = document.getElementById("difficultySelect");
 const modeSelect = document.getElementById("modeSelect");
 const availability = document.getElementById("availability");
 let papers = [];
+const unitList = document.getElementById("unitList");
 
 async function initialise() {
   try {
@@ -16,9 +17,30 @@ async function initialise() {
     difficultySelect.value = settings.difficulty || "hard";
     modeSelect.value = settings.mode || "full";
     updateAvailability();
+    loadUnits();
   } catch (error) {
     availability.textContent = `Cannot load papers: ${error.message}`;
     document.getElementById("startBtn").disabled = true;
+  }
+}
+
+async function loadUnits() {
+  try {
+    const response = await fetch("data/units.json");
+    if (!response.ok) throw new Error("data/units.json was not found.");
+    const { units = [] } = await response.json();
+    unitList.replaceChildren(...units.filter(unit => unit.questions?.length).map(unit => {
+      const button = document.createElement("button");
+      const count = unit.questions.length;
+      const countText = document.createElement("span");
+      button.append(unit.title, countText);
+      countText.textContent = `${count} Question${count === 1 ? "" : "s"}`;
+      button.addEventListener("click", () => openExam({ type: "unit", unit: unit.id, unitTitle: unit.title, mode: "full" }, true));
+      return button;
+    }));
+    if (!unitList.childElementCount) unitList.textContent = "No unit questions are available yet.";
+  } catch (error) {
+    unitList.textContent = `Cannot load unit practice: ${error.message}`;
   }
 }
 

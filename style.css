@@ -17,6 +17,10 @@ button:disabled { cursor: not-allowed; opacity: .55; }
 .primary:hover { background: #0e478e; }
 .danger { color: #8d2020; }
 .home-layout button { width: 100%; margin-top: 12px; }
+.unit-practice { grid-column: 1 / -1; }
+.unit-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-top: 16px; }
+.unit-list button { width: 100%; margin: 0; text-align: left; }
+.unit-list button span { display: block; margin-top: 5px; color: #526176; font-size: 13px; font-weight: normal; }
 .hint { color: #526176; line-height: 1.5; }
 .exam-header { display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; gap: 12px; }
 .exam-header > div { text-align: center; }
@@ -31,6 +35,12 @@ fieldset { display: flex; gap: 16px; padding: 0; border: 0; }
 fieldset label { width: auto; margin: 0; font-size: 18px; font-weight: normal; }
 fieldset input { margin-right: 5px; transform: scale(1.15); }
 #clearAnswerBtn { margin-top: 18px; }
+.question-tools { margin-top: 18px; }
+.question-tools label { margin-top: 0; }
+.question-navigator { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.question-navigator button { min-width: 38px; padding: 8px; }
+.question-navigator button.current { color: #fff; background: #155bb5; }
+.question-navigator button.answered { box-shadow: inset 0 0 0 2px #4f8bda; }
 .exam-actions { display: flex; justify-content: space-between; margin-top: 18px; }
 .results-shell { display: grid; gap: 20px; }
 .score { font-size: 34px; font-weight: 700; color: #155bb5; margin: 16px 0 6px; }

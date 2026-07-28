@@ -10,7 +10,7 @@
   <main class="exam-shell">
     <header class="exam-header card">
       <button id="homeBtn">Home</button>
-      <div><h1 id="title">Loading…</h1><p id="questionNumber"></p></div>
+      <div><h1 id="title">Loading...</h1><p id="questionNumber"></p></div>
       <div class="timer"><span>Time</span><strong id="timer">00:00:00</strong></div>
     </header>
 
@@ -28,6 +28,12 @@
         <label><input type="radio" name="answer" value="E"> E</label>
       </fieldset>
       <button id="clearAnswerBtn">Clear selection</button>
+    </section>
+
+    <section class="card question-tools">
+      <label for="jumpSelect">Jump to question</label>
+      <select id="jumpSelect"></select>
+      <div id="questionNavigator" class="question-navigator" aria-label="Question navigator"></div>
     </section>
 
     <footer class="card exam-actions">

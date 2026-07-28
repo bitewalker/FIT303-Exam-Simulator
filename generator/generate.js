@@ -38,6 +38,25 @@ function getQuestions(folder, difficulty, paper) {
 
 }
 
+function formatUnitName(folder) {
+    const chapter = folder.match(/^chap(.+)$/i);
+    if (chapter) {
+        const numbers = chapter[1].split(/[_-]+/)
+            .map(part => /^\d+$/.test(part) ? Number(part) : part)
+            .join(" & ");
+        return `Chapter ${numbers}`;
+    }
+    return folder.replace(/[_-]+/g, " ").replace(/\b\w/g, letter => letter.toUpperCase());
+}
+
+function getUnitQuestions(folder, unit) {
+    if (!fs.existsSync(folder)) return [];
+    return fs.readdirSync(folder)
+        .filter(file => /^p.*\.png$/i.test(file))
+        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+        .map((file, index) => ({ number: index + 1, image: `images/units/${unit}/${file}` }));
+}
+
 if (!fs.existsSync(IMAGES_DIR)) {
 
     console.log("Images folder not found.");
@@ -46,7 +65,7 @@ if (!fs.existsSync(IMAGES_DIR)) {
 }
 
 const paperFolders = fs.readdirSync(IMAGES_DIR, { withFileTypes: true })
-    .filter(d => d.isDirectory())
+    .filter(d => d.isDirectory() && d.name !== "units")
     .map(d => d.name);
 
 const papers = [];
@@ -106,3 +125,22 @@ fs.writeFileSync(
 console.log();
 console.log("Done.");
 console.log(`${papers.length} paper(s) generated.`);
+
+const unitsFolder = path.join(IMAGES_DIR, "units");
+const units = fs.existsSync(unitsFolder)
+    ? fs.readdirSync(unitsFolder, { withFileTypes: true })
+        .filter(directory => directory.isDirectory())
+        .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }))
+        .map(directory => ({
+            id: directory.name,
+            title: formatUnitName(directory.name),
+            questions: getUnitQuestions(path.join(unitsFolder, directory.name), directory.name)
+        }))
+    : [];
+
+fs.writeFileSync(
+    path.join(DATA_DIR, "units.json"),
+    JSON.stringify({ units }, null, 4)
+);
+
+console.log(`${units.length} unit(s) generated.`);
