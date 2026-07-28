@@ -1,0 +1,56 @@
+[
+    {
+        "paper": "paper1",
+        "hard": 27,
+        "easy": 0,
+        "total": 27
+    },
+    {
+        "paper": "paper2",
+        "hard": 32,
+        "easy": 0,
+        "total": 32
+    },
+    {
+        "paper": "paper3",
+        "hard": 27,
+        "easy": 0,
+        "total": 27
+    },
+    {
+        "paper": "paper4",
+        "hard": 24,
+        "easy": 0,
+        "total": 24
+    },
+    {
+        "paper": "paper5",
+        "hard": 27,
+        "easy": 0,
+        "total": 27
+    },
+    {
+        "paper": "paper6",
+        "hard": 27,
+        "easy": 0,
+        "total": 27
+    },
+    {
+        "paper": "paper7",
+        "hard": 25,
+        "easy": 0,
+        "total": 25
+    },
+    {
+        "paper": "paper8",
+        "hard": 26,
+        "easy": 0,
+        "total": 26
+    },
+    {
+        "paper": "paper9",
+        "hard": 27,
+        "easy": 0,
+        "total": 27
+    }
+]

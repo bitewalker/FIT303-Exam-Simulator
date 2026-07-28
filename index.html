@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIT303 Mathematics Exam Simulator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <h1>FIT303 Mathematics Exam Simulator</h1>
+    <p>Offline Practice System</p>
+</header>
+
+<main class="homeContainer">
+
+    <div class="paperCard">
+
+        <h2>Start Exam</h2>
+
+        <div class="formGroup">
+            <label for="paperSelect">Paper</label>
+            <select id="paperSelect">
+                <option value="paper1">Paper 1</option>
+                <option value="paper2">Paper 2</option>
+                <option value="paper3">Paper 3</option>
+                <option value="paper4">Paper 4</option>
+                <option value="paper5">Paper 5</option>
+            </select>
+        </div>
+
+        <div class="formGroup">
+            <label for="difficultySelect">Difficulty</label>
+            <select id="difficultySelect">
+                <option value="easy">Easy</option>
+                <option value="hard" selected>Hard</option>
+            </select>
+        </div>
+
+        <div class="formGroup">
+            <label for="modeSelect">Exam Mode</label>
+            <select id="modeSelect">
+                <option value="full">Full Paper</option>
+                <option value="20">Random 20 Questions</option>
+                <option value="10">Random 10 Questions</option>
+            </select>
+        </div>
+
+        <div class="buttonGroup">
+
+            <button id="startBtn">
+                ▶ Start Exam
+            </button>
+
+            <button id="continueBtn">
+                ⏯ Continue Previous Attempt
+            </button>
+
+            <button id="clearBtn">
+                🗑 Clear Saved Progress
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="paperCard">
+
+        <h2>Instructions</h2>
+
+        <ul>
+            <li>Select a paper.</li>
+            <li>Select Easy or Hard questions.</li>
+            <li>Choose Full Paper or Random Questions.</li>
+            <li>Your answers are automatically saved.</li>
+            <li>You can continue an unfinished exam later.</li>
+            <li>Results will be shown immediately after finishing.</li>
+
+        </ul>
+
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>

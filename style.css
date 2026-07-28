@@ -1,0 +1,210 @@
+/* ==========================================
+   FIT303 Mathematics Exam Simulator
+   style.css
+   ========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+    background:#eef2f7;
+    color:#222;
+}
+
+/* ===========================
+   HOME
+=========================== */
+
+.header{
+    background:#1565c0;
+    color:#fff;
+    text-align:center;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.header h1{
+    font-size:36px;
+    margin-bottom:5px;
+}
+
+.paperGrid{
+    width:95%;
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+}
+
+.paperCard{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.paperCard h2{
+    color:#1565c0;
+    margin-bottom:15px;
+}
+
+.paperCard p{
+    margin:8px 0;
+}
+
+.paperCard button{
+    margin-top:15px;
+    margin-right:10px;
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+button{
+    background:#1976d2;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    padding:10px 20px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+button:hover{
+    background:#0d5fb8;
+}
+
+button:disabled{
+    background:#bdbdbd;
+    cursor:not-allowed;
+}
+
+/* ===========================
+   EXAM PAGE
+=========================== */
+
+#exam{
+    width:95%;
+    max-width:1400px;
+    margin:20px auto;
+}
+
+.examHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+.titleArea{
+    text-align:right;
+}
+
+#title{
+    margin-bottom:5px;
+}
+
+#questionNumber{
+    color:#666;
+}
+
+/* ===========================
+   IMAGE
+=========================== */
+
+.imagePanel{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+#questionImage{
+    width:100%;
+    max-width:1200px;
+    height:auto;
+    display:block;
+    margin:auto;
+    border:1px solid #ddd;
+}
+
+/* ===========================
+   ANSWERS
+=========================== */
+
+.answerPanel{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+.answerPanel h3{
+    margin-bottom:15px;
+}
+
+.answerPanel label{
+    display:block;
+    padding:8px 0;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.answerPanel input[type="radio"]{
+    margin-right:10px;
+    transform:scale(1.2);
+}
+
+/* ===========================
+   NAVIGATION
+=========================== */
+
+.navigation{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    margin-bottom:30px;
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+    .examHeader{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .titleArea{
+        text-align:center;
+    }
+
+    .navigation{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .answerPanel label{
+        font-size:17px;
+    }
+
+}
