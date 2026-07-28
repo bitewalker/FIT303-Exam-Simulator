@@ -1,87 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIT303 Mathematics Exam</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FIT303 Exam</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div id="exam">
-
-    <header class="examHeader">
-
-        <button id="backBtn">← Home</button>
-
-        <div class="titleArea">
-            <h2 id="title">Loading...</h2>
-            <p id="questionNumber">Question 1 / 50</p>
-        </div>
-
+  <main class="exam-shell">
+    <header class="exam-header card">
+      <button id="homeBtn">Home</button>
+      <div><h1 id="title">Loading…</h1><p id="questionNumber"></p></div>
+      <div class="timer"><span>Time</span><strong id="timer">00:00:00</strong></div>
     </header>
 
-    <main>
+    <section class="card image-card">
+      <img id="questionImage" alt="Question screenshot">
+    </section>
 
-        <div class="imagePanel">
+    <section class="card answer-card">
+      <h2>Select your answer</h2>
+      <fieldset id="answers">
+        <label><input type="radio" name="answer" value="A"> A</label>
+        <label><input type="radio" name="answer" value="B"> B</label>
+        <label><input type="radio" name="answer" value="C"> C</label>
+        <label><input type="radio" name="answer" value="D"> D</label>
+        <label><input type="radio" name="answer" value="E"> E</label>
+      </fieldset>
+      <button id="clearAnswerBtn">Clear selection</button>
+    </section>
 
-            <img
-                id="questionImage"
-                src=""
-                alt="Question Image"
-            >
-
-        </div>
-
-        <div class="answerPanel">
-
-            <h3>Select Answer</h3>
-
-            <label>
-                <input type="radio" name="answer" value="A">
-                A
-            </label>
-
-            <label>
-                <input type="radio" name="answer" value="B">
-                B
-            </label>
-
-            <label>
-                <input type="radio" name="answer" value="C">
-                C
-            </label>
-
-            <label>
-                <input type="radio" name="answer" value="D">
-                D
-            </label>
-
-            <label>
-                <input type="radio" name="answer" value="E">
-                E
-            </label>
-
-        </div>
-
-    </main>
-
-    <footer class="navigation">
-
-        <button id="prevBtn">
-            ◀ Previous
-        </button>
-
-        <button id="nextBtn">
-            Next ▶
-        </button>
-
+    <footer class="card exam-actions">
+      <button id="prevBtn">Previous</button>
+      <button id="finishBtn" class="primary">Finish exam</button>
+      <button id="nextBtn">Next</button>
     </footer>
-
-</div>
-
-<script src="exam.js"></script>
-
+  </main>
+  <script src="exam.js"></script>
 </body>
 </html>

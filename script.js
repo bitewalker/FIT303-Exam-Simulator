@@ -1,160 +1,60 @@
-// ======================================
-// FIT303 Mathematics Exam Simulator
-// script.js
-// ======================================
-
+const APP_PREFIX = "fit303-";
 const paperSelect = document.getElementById("paperSelect");
 const difficultySelect = document.getElementById("difficultySelect");
 const modeSelect = document.getElementById("modeSelect");
+const availability = document.getElementById("availability");
+let papers = [];
 
-const startBtn = document.getElementById("startBtn");
-const continueBtn = document.getElementById("continueBtn");
-const clearBtn = document.getElementById("clearBtn");
-
-// --------------------------------------
-// Save last selected options
-// --------------------------------------
-
-loadSettings();
-
-paperSelect.addEventListener("change", saveSettings);
-difficultySelect.addEventListener("change", saveSettings);
-modeSelect.addEventListener("change", saveSettings);
-
-// --------------------------------------
-// Start Exam
-// --------------------------------------
-
-startBtn.addEventListener("click", () => {
-
-    saveSettings();
-
-    const paper = paperSelect.value;
-    const difficulty = difficultySelect.value;
-    const mode = modeSelect.value;
-
-    localStorage.removeItem("currentQuestion");
-
-    window.location.href =
-        `exam.html?paper=${encodeURIComponent(paper)}&difficulty=${encodeURIComponent(difficulty)}&mode=${encodeURIComponent(mode)}`;
-
-});
-
-// --------------------------------------
-// Continue Previous Attempt
-// --------------------------------------
-
-continueBtn.addEventListener("click", () => {
-
-    const examInfo = JSON.parse(localStorage.getItem("lastExam"));
-
-    if (!examInfo) {
-
-        alert("No saved exam found.");
-
-        return;
-
-    }
-
-    window.location.href =
-        `exam.html?paper=${encodeURIComponent(examInfo.paper)}&difficulty=${encodeURIComponent(examInfo.difficulty)}&mode=${encodeURIComponent(examInfo.mode)}`;
-
-});
-
-// --------------------------------------
-// Clear Saved Progress
-// --------------------------------------
-
-clearBtn.addEventListener("click", () => {
-
-    if (!confirm("Delete all saved exam progress?")) {
-
-        return;
-
-    }
-
-    const keys = Object.keys(localStorage);
-
-    keys.forEach(key => {
-
-        if (
-            key.startsWith("paper") ||
-            key === "lastExam" ||
-            key === "currentQuestion" ||
-            key === "timer" ||
-            key === "settings"
-        ) {
-
-            localStorage.removeItem(key);
-
-        }
-
-    });
-
-    alert("Saved progress cleared.");
-
-});
-
-// --------------------------------------
-// Settings
-// --------------------------------------
-
-function saveSettings() {
-
-    const settings = {
-
-        paper: paperSelect.value,
-        difficulty: difficultySelect.value,
-        mode: modeSelect.value
-
-    };
-
-    localStorage.setItem(
-        "settings",
-        JSON.stringify(settings)
-    );
-
+async function initialise() {
+  try {
+    const response = await fetch("data/papers.json");
+    if (!response.ok) throw new Error("data/papers.json was not found.");
+    papers = await response.json();
+    const settings = JSON.parse(localStorage.getItem(`${APP_PREFIX}settings`) || "{}");
+    paperSelect.innerHTML = papers.map(({ paper }) => `<option value="${paper}">${paper.replace("paper", "Paper ")}</option>`).join("");
+    paperSelect.value = papers.some(p => p.paper === settings.paper) ? settings.paper : papers[0]?.paper;
+    difficultySelect.value = settings.difficulty || "hard";
+    modeSelect.value = settings.mode || "full";
+    updateAvailability();
+  } catch (error) {
+    availability.textContent = `Cannot load papers: ${error.message}`;
+    document.getElementById("startBtn").disabled = true;
+  }
 }
 
-function loadSettings() {
+function selectedPaper() { return papers.find(p => p.paper === paperSelect.value); }
 
-    const settings =
-        JSON.parse(localStorage.getItem("settings"));
-
-    if (!settings) return;
-
-    if (settings.paper)
-        paperSelect.value = settings.paper;
-
-    if (settings.difficulty)
-        difficultySelect.value = settings.difficulty;
-
-    if (settings.mode)
-        modeSelect.value = settings.mode;
-
+function updateAvailability() {
+  const paper = selectedPaper();
+  if (!paper) return;
+  const count = paper[difficultySelect.value] || 0;
+  availability.textContent = `${paper.paper.replace("paper", "Paper ")} has ${count} ${difficultySelect.value} question${count === 1 ? "" : "s"}.`;
+  document.getElementById("startBtn").disabled = count === 0;
 }
 
-// --------------------------------------
-// Save Last Exam Information
-// --------------------------------------
-
-function saveLastExam() {
-
-    const exam = {
-
-        paper: paperSelect.value,
-        difficulty: difficultySelect.value,
-        mode: modeSelect.value
-
-    };
-
-    localStorage.setItem(
-        "lastExam",
-        JSON.stringify(exam)
-    );
-
+function settings() {
+  return { paper: paperSelect.value, difficulty: difficultySelect.value, mode: modeSelect.value };
 }
 
-// Save automatically when starting
+function openExam(exam, fresh = false) {
+  localStorage.setItem(`${APP_PREFIX}settings`, JSON.stringify(exam));
+  const query = new URLSearchParams(exam);
+  if (fresh) query.set("fresh", "1");
+  window.location.href = `exam.html?${query}`;
+}
 
-startBtn.addEventListener("click", saveLastExam);
+document.getElementById("startBtn").addEventListener("click", () => openExam(settings(), true));
+document.getElementById("continueBtn").addEventListener("click", () => {
+  const attempt = JSON.parse(localStorage.getItem(`${APP_PREFIX}last-attempt`) || "null");
+  if (!attempt) return alert("There is no saved attempt yet.");
+  openExam(attempt.config);
+});
+document.getElementById("clearProgressBtn").addEventListener("click", () => {
+  if (!confirm("Clear all saved answers, timers, and results for FIT303?")) return;
+  Object.keys(localStorage).filter(key => key.startsWith(APP_PREFIX)).forEach(key => localStorage.removeItem(key));
+  alert("Saved progress cleared.");
+});
+paperSelect.addEventListener("change", updateAvailability);
+difficultySelect.addEventListener("change", updateAvailability);
+modeSelect.addEventListener("change", () => localStorage.setItem(`${APP_PREFIX}settings`, JSON.stringify(settings())));
+initialise();
