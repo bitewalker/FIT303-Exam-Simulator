@@ -1,9 +1,9 @@
 [
     {
         "paper": "paper1",
-        "hard": 27,
-        "easy": 0,
-        "total": 27
+        "hard": 22,
+        "easy": 23,
+        "total": 45
     },
     {
         "paper": "paper2",
