@@ -577,96 +577,9 @@
             ]
         },
         {
-            "id": "chap16",
-            "title": "Chapter 16",
-            "questions": [
-                {
-                    "number": 1,
-                    "image": "images/units/chap16/p001.png"
-                },
-                {
-                    "number": 2,
-                    "image": "images/units/chap16/p002.png"
-                },
-                {
-                    "number": 3,
-                    "image": "images/units/chap16/p003.png"
-                },
-                {
-                    "number": 4,
-                    "image": "images/units/chap16/p004.png"
-                },
-                {
-                    "number": 5,
-                    "image": "images/units/chap16/p005.png"
-                },
-                {
-                    "number": 6,
-                    "image": "images/units/chap16/p006.png"
-                },
-                {
-                    "number": 7,
-                    "image": "images/units/chap16/p007.png"
-                },
-                {
-                    "number": 8,
-                    "image": "images/units/chap16/p008.png"
-                },
-                {
-                    "number": 9,
-                    "image": "images/units/chap16/p009.png"
-                },
-                {
-                    "number": 10,
-                    "image": "images/units/chap16/p010.png"
-                },
-                {
-                    "number": 11,
-                    "image": "images/units/chap16/p011.png"
-                }
-            ]
-        },
-        {
-            "id": "chap17",
-            "title": "Chapter 17",
-            "questions": [
-                {
-                    "number": 1,
-                    "image": "images/units/chap17/p001.png"
-                },
-                {
-                    "number": 2,
-                    "image": "images/units/chap17/p002.png"
-                },
-                {
-                    "number": 3,
-                    "image": "images/units/chap17/p003.png"
-                },
-                {
-                    "number": 4,
-                    "image": "images/units/chap17/p004.png"
-                },
-                {
-                    "number": 5,
-                    "image": "images/units/chap17/p005.png"
-                },
-                {
-                    "number": 6,
-                    "image": "images/units/chap17/p006.png"
-                },
-                {
-                    "number": 7,
-                    "image": "images/units/chap17/p007.png"
-                },
-                {
-                    "number": 8,
-                    "image": "images/units/chap17/p008.png"
-                },
-                {
-                    "number": 9,
-                    "image": "images/units/chap17/p009.png"
-                }
-            ]
+            "id": "old",
+            "title": "Old",
+            "questions": []
         }
     ]
 }
