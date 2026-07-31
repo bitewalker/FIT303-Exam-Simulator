@@ -10,10 +10,6 @@
             "image": "images/paper2/hard/2.PNG"
         },
         {
-            "number": 3,
-            "image": "images/paper2/hard/3.PNG"
-        },
-        {
             "number": 4,
             "image": "images/paper2/hard/4.PNG"
         },
@@ -28,10 +24,6 @@
         {
             "number": 7,
             "image": "images/paper2/hard/7.PNG"
-        },
-        {
-            "number": 8,
-            "image": "images/paper2/hard/8.PNG"
         },
         {
             "number": 9,
@@ -66,16 +58,8 @@
             "image": "images/paper2/hard/16.PNG"
         },
         {
-            "number": 17,
-            "image": "images/paper2/hard/17.PNG"
-        },
-        {
             "number": 18,
             "image": "images/paper2/hard/18.PNG"
-        },
-        {
-            "number": 19,
-            "image": "images/paper2/hard/19.PNG"
         },
         {
             "number": 20,
@@ -118,16 +102,8 @@
             "image": "images/paper2/hard/29.PNG"
         },
         {
-            "number": 30,
-            "image": "images/paper2/hard/30.PNG"
-        },
-        {
             "number": 31,
             "image": "images/paper2/hard/31.PNG"
-        },
-        {
-            "number": 32,
-            "image": "images/paper2/hard/32.PNG"
         }
     ],
     "easy": []
